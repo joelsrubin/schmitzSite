@@ -11,13 +11,70 @@
     <header>
       <div class="container">
         <div class="row">
-          <div class="cell">
+          <div class="cell" id="name">
             <h1 class="title">Schmitz Touring</h1>
+          </div>
+          <nav>
+            <div class="info">
+              <a
+                href="mailto:matt@schmitztouring.com?subject=Hey Matt!"
+                target="_blank"
+              >
+                <h1>Contact</h1>
+              </a>
+            </div>
+            <div class="info">
+              <a>
+                <h1>About</h1>
+              </a>
+            </div>
+          </nav>
+          <div class="menu-btn">
+            <div class="menu-btn__burger"></div>
           </div>
         </div>
       </div>
     </header>
-    <main></main>
+    <main>
+      <div class="panel">
+        <div class="info">
+          <a
+            href="mailto:matt@schmitztouring.com?subject=Hey Matt!"
+            target="_blank"
+          >
+            <h1>Contact</h1>
+          </a>
+        </div>
+        <div class="info">
+          <a>
+            <h1>About</h1>
+          </a>
+        </div>
+      </div>
+    </main>
     <footer></footer>
+    <script>
+      const menuBtn = document.querySelector('.menu-btn');
+      const panel = document.querySelector('.panel');
+      let menuOpen = false;
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 600) {
+          menuOpen = false;
+          menuBtn.classList.remove('open');
+          panel.classList.remove('open');
+        }
+      });
+      menuBtn.addEventListener('click', () => {
+        if (!menuOpen) {
+          menuBtn.classList.add('open');
+          panel.classList.add('open');
+          menuOpen = true;
+        } else {
+          menuBtn.classList.remove('open');
+          panel.classList.remove('open');
+          menuOpen = false;
+        }
+      });
+    </script>
   </body>
 </html>

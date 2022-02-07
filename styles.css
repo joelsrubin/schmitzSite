@@ -33,10 +33,35 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-image: url('https://c.tenor.com/2gaUCDtu-wUAAAAi/rock-sign-rock-and-roll.gif');
-  background-repeat: repeat;
-  background-size: 100px 100px;
+  background-image: linear-gradient(
+    180deg,
+    hsl(240deg 24% 96%) 0%,
+    hsl(270deg 92% 97%) 11%,
+    hsl(300deg 100% 96%) 22%,
+    hsl(311deg 100% 95%) 33%,
+    hsl(336deg 100% 94%) 44%,
+    hsl(7deg 100% 92%) 56%,
+    hsl(27deg 100% 88%) 67%,
+    hsl(40deg 100% 83%) 78%,
+    hsl(48deg 100% 79%) 89%,
+    hsl(55deg 95% 76%) 100%
+  );
+  /* background-repeat: cover;
+  background-size: 100px 100px; */
+  /* animation: gradient 30s ease infinite; */
 }
+
+/* @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
 
 /*
   6. Improve media defaults
@@ -86,43 +111,186 @@ h6 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 40vh;
+  height: 15vh;
   width: 100%;
   background-color: transparent;
 }
 
 .row {
-  width: 75%;
+  width: 100%;
+  display: flex;
+  padding: 50px;
+  /* margin: 20px; */
 }
 
 .cell {
-  width: 80%;
-  background-color: lightpink;
-  border-radius: 10px;
-  padding: 10px;
+  width: 100%;
   text-align: center;
+  justify-content: center;
   margin: auto;
-  box-shadow: 0px 0px 10px black;
+  display: flex;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
 }
 
 .title {
   font-size: 4rem;
   font-weight: bold;
   color: black;
+  cursor: pointer;
+  word-wrap: nowrap;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+#name {
+  grid-column: span 2;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.panel {
+  display: none;
 }
 
 @media (max-width: 600px) {
+  .menu-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    /* border: 3px solid #fff; */
+  }
+  .menu-btn__burger {
+    will-change: transform;
+    width: 50px;
+    height: 6px;
+    background: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(247, 91, 211, 0.591);
+    transition: all 0.5s ease-in-out;
+  }
+  .menu-btn__burger::before,
+  .menu-btn__burger::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 6px;
+    background: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(247, 91, 211, 0.591);
+    transition: all 0.5s ease-in-out;
+  }
+  .menu-btn__burger::before {
+    transform: translateY(-16px);
+  }
+  .menu-btn__burger::after {
+    transform: translateY(16px);
+  }
+  /* ANIMATION */
+  .menu-btn.open .menu-btn__burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+  .menu-btn.open .menu-btn__burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+  .menu-btn.open .menu-btn__burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+
   .container {
-    height: 20vh;
+    height: 10vh;
+    width: 100%;
+    background-color: oldlace;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .title {
+    font-size: 2.5rem;
+    justify-self: flex-start;
+    text-align: left;
+    z-index: 2;
+    text-shadow: 0 2px 5px rgba(247, 91, 211, 0.591);
   }
   .row {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    z-index: 2;
   }
   .cell {
-    width: 80%;
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 10px;
+    z-index: 2;
   }
 
-  .title {
-    font-size: 3rem;
+  nav {
+    display: none;
+    z-index: 2;
+  }
+
+  .panel.open {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: translateY(30%);
+
+    transition: all 0.7s ease;
+    z-index: 0;
+    height: 30vh;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: translateY(-100%);
+
+    transition: all 0.7s ease;
+    height: 30vh;
+    background-color: oldlace;
+    /* height: 40%; */
+    z-index: 0;
   }
 }
