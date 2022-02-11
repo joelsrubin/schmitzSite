@@ -779,12 +779,19 @@
       // CONSTANTS
 
       const MAX_WIDTH = window.innerWidth;
+      const MAX_HEIGHT = window.innerHeight;
       const windowThird = MAX_WIDTH / 6;
       const menuBtn = document.querySelector('.menu-btn');
       const aboutBtn = document.querySelector('#about');
       const about = document.querySelector('.about_container');
       const panel = document.querySelector('.panel');
       let menuOpen = false;
+
+      function setBodyStyle() {
+        document.body.style.maxWidth = MAX_WIDTH + 'px';
+        document.body.style.maxHeight = MAX_HEIGHT + 'px';
+        document.body.style.overflowY = 'hidden';
+      }
 
       // push divs into an array
       // console.log({ col1, col2, col3 });
@@ -809,7 +816,7 @@
 
       function styleNode(node) {
         node.style.position = 'absolute';
-        node.style.left = getRandomInt(0, MAX_WIDTH) + 'px';
+        node.style.left = getRandomInt(0, MAX_WIDTH - 90) + 'px';
         node.style.top = -20 + 'px';
         document.querySelector('main').appendChild(node);
         node.style.animationDelay = getRandomInt(0, 15000) + 'ms';
@@ -864,6 +871,7 @@
 
       // start animation
       takeNodeAndAnimate(arrNodes);
+      setBodyStyle();
       // takeNodeAndAnimate(col1, windowThird);
       // takeNodeAndAnimate(col2, windowThird * 2);
       // takeNodeAndAnimate(col3, windowThird * 3);
