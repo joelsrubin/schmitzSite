@@ -7,6 +7,8 @@
     <title>Schmitz Touring</title>
     <meta name="theme-color" content="#fdf5e6" />
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/x-icon" href="/guitar.png" />
+    <link rel="apple-touch-icon" href="/guitar.png" />
   </head>
   <body>
     <header>
@@ -805,20 +807,22 @@
         return Math.floor(Math.random() * (max - min)) + min;
       }
 
+      function styleNode(node) {
+        node.style.position = 'absolute';
+        node.style.left = getRandomInt(0, MAX_WIDTH) + 'px';
+        node.style.top = -20 + 'px';
+        document.querySelector('main').appendChild(node);
+        node.style.animationDelay = getRandomInt(0, 15000) + 'ms';
+        node.style.willChange = 'transform';
+        node.style.textAlign = 'center';
+        node.classList.add('drop');
+        return node;
+      }
+
       // select a node
-      function takeNodeAndAnimate(column, num = 0) {
+      function takeNodeAndAnimate(column) {
         for (let i = 0; i < column.length; i++) {
-          let curNode = column[i];
-          curNode.style.position = 'absolute';
-          // curNode.style.left = num + 'px';
-          curNode.style.left = getRandomInt(0, MAX_WIDTH) + 'px';
-          curNode.style.top = -20 + 'px';
-          document.querySelector('main').appendChild(curNode);
-          // curNode.style.animationDelay = i + '000' + 'ms';
-          curNode.style.animationDelay = getRandomInt(0, 15000) + 'ms';
-          curNode.style.willChange = 'transform';
-          curNode.style.textAlign = 'center';
-          curNode.classList.add('drop');
+          let curNode = styleNode(column[i]);
         }
       }
 
