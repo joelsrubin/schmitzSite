@@ -23,6 +23,8 @@
 html,
 body {
   height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 /*
@@ -31,6 +33,8 @@ body {
   5. Improve text rendering
 */
 body {
+  display: flex;
+  flex-direction: column;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background-image: linear-gradient(
@@ -113,7 +117,10 @@ h6 {
   justify-content: center;
   height: 15vh;
   width: 100%;
-  background-color: transparent;
+  background-color: oldlace;
+  position: absolute;
+  top: 0;
+  z-index: 99;
 }
 
 .row {
@@ -142,7 +149,8 @@ nav {
   display: flex;
   text-align: center;
   justify-content: center;
-  margin: auto;
+  margin: auto 10px;
+  font-size: 1.5rem;
 }
 
 .title {
@@ -154,11 +162,8 @@ nav {
 }
 
 .title:hover {
-  text-decoration: underline;
-}
-
-#name {
-  grid-column: span 2;
+  /* text-decoration: underline; */
+  text-shadow: 0 2px 5px rgba(247, 91, 211, 0.591);
 }
 
 a,
@@ -169,18 +174,77 @@ a:visited {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-shadow: 0 2px 5px rgba(247, 91, 211, 0.591);
 }
 
 .menu-btn {
   display: none;
 }
 
+.drop {
+  position: absolute;
+  pointer-events: none;
+  animation: drop 15s linear infinite;
+  z-index: 0;
+}
+
 .panel {
   display: none;
 }
 
+.about_container {
+  /* position: absolute; */
+  top: 50%;
+  width: 70%;
+  border: 4px solid rgba(247, 91, 211, 0.591);
+  border-radius: 10px;
+  background-color: oldlace;
+  padding: 20px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  z-index: 22;
+  font-size: 2rem;
+  max-height: 6 0%;
+}
+
+.about_container p {
+  font-size: 1.5rem;
+}
+
+.about_container.displayed {
+  opacity: 1;
+  transition: opacity 250ms ease;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-10vh);
+  }
+  75% {
+    transform: translateY(120vh);
+  }
+  100% {
+    transform: translateY(120vh);
+  }
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 3rem;
+  }
+  .info {
+    margin: auto 5px;
+  }
+}
+
 @media (max-width: 600px) {
+  .drop {
+    display: none;
+  }
   .menu-btn {
     position: relative;
     display: flex;
@@ -276,7 +340,7 @@ a:hover {
     transform: translateY(30%);
 
     transition: all 0.7s ease;
-    z-index: 0;
+    z-index: 1;
     height: 30vh;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
@@ -293,4 +357,12 @@ a:hover {
     /* height: 40%; */
     z-index: 0;
   }
+
+  .info {
+    text-shadow: 0 2px 5px rgba(247, 91, 211, 0.591);
+    font-size: 1rem;
+  }
+  /* main {
+    justify-content: center;
+  } */
 }
