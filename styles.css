@@ -297,7 +297,7 @@ a:hover {
 
   .container {
     height: 10vh;
-    width: 100%;
+    width: 100vw;
     background-color: oldlace;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -305,6 +305,8 @@ a:hover {
     position: absolute;
     top: 0;
     left: 0;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
   }
   .title {
     font-size: 2.5rem;
