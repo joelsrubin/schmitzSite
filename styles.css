@@ -35,6 +35,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
+
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background-image: linear-gradient(
@@ -184,7 +185,7 @@ a:hover {
 .drop {
   position: absolute;
   pointer-events: none;
-  animation: drop 15s linear infinite;
+  animation: drop 20s linear infinite;
   z-index: 0;
 }
 
@@ -250,6 +251,9 @@ a:hover {
   /* .drop {
     display: none;
   } */
+  body {
+    height: 100vh;
+  }
   .menu-btn {
     position: relative;
     display: flex;
